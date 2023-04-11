@@ -1,7 +1,6 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Main from "./components/Main.jsx";
-import "./app.css";
+import "./App.css";
 
 function App() {
   return (
