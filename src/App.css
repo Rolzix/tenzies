@@ -83,3 +83,7 @@ main {
   background: #5035ff;
   box-shadow: inset 0px 1.6px 3.84px rgba(0, 0, 0, 0.18);
 }
+.isHeld {
+  background-color: #59e391;
+  color: white;
+}

@@ -19,7 +19,7 @@ function App() {
   // }, []);
 
   let diceElements = dice.map((die, index) => {
-    return <Dice value={die.value} key={index} />;
+    return <Dice value={die.value} key={index} isHeld={die.isHeld} />;
   });
 
   function roll(event) {
