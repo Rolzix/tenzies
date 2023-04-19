@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Dice from "./components/Die.jsx";
 import { nanoid } from "nanoid";
 import "./App.css";
+
 function App() {
   function allNewDice() {
     let dice = [];
@@ -19,7 +20,13 @@ function App() {
   // }, []);
 
   function holdDice(id) {
-    console.log(id);
+    let newDice = dice.map((die) => {
+      if (die.id === id) {
+        die.isHeld = !die.isHeld;
+      }
+      return die;
+    });
+    setDice(newDice);
   }
 
   let diceElements = dice.map((die, index) => {
