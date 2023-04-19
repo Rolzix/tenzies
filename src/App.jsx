@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import Dice from "./components/Die.jsx";
+import { nanoid } from "nanoid";
 import "./App.css";
-
 function App() {
   function allNewDice() {
     let dice = [];
     for (let i = 0; i < 10; i++) {
       const die = Math.floor(Math.random() * 6) + 1;
-      dice.push({ value: die, isHeld: false });
+      dice.push({ value: die, isHeld: false, id: nanoid() });
     }
     return dice;
   }
@@ -18,8 +18,20 @@ function App() {
   //   allNewDice();
   // }, []);
 
+  function holdDice(id) {
+    console.log(id);
+  }
+
   let diceElements = dice.map((die, index) => {
-    return <Dice value={die.value} key={index} isHeld={die.isHeld} />;
+    return (
+      <Dice
+        value={die.value}
+        key={index}
+        isHeld={die.isHeld}
+        holdDice={() => holdDice(die.id)}
+        id={die.id}
+      />
+    );
   });
 
   function roll(event) {
