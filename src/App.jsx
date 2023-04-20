@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Dice from "./components/Die.jsx";
 import { nanoid } from "nanoid";
+import Confetti from "react-confetti";
 import "./App.css";
 
 function App() {
@@ -31,6 +32,8 @@ function App() {
     if (allHeld && allSame) {
       setTenzies(true);
       console.log("You won!");
+    } else {
+      setTenzies(false);
     }
   }, [dice]);
 
@@ -66,6 +69,10 @@ function App() {
       });
       return newDice;
     });
+    if (tenzies) {
+      console.log("new dice");
+      setDice(allNewDice());
+    }
   }
 
   return (
@@ -79,10 +86,11 @@ function App() {
           </p>
           <div className="dice">{diceElements}</div>
           <button className="button--roll" onClick={roll}>
-            Roll
+            {tenzies ? "New Game" : "Roll"}
           </button>
         </section>
       </main>
+      {tenzies && <Confetti />}
     </div>
   );
 }
