@@ -4,6 +4,9 @@ import { nanoid } from "nanoid";
 import Confetti from "react-confetti";
 import "./App.css";
 
+let startTime = new Date().getTime();
+let endTime = Infinity;
+
 function App() {
   function allNewDice() {
     let dice = [];
@@ -16,6 +19,17 @@ function App() {
 
   const [dice, setDice] = useState(allNewDice());
   const [tenzies, setTenzies] = useState(false);
+  const [count, setCount] = useState(0);
+  const [highScores, setHighScores] = useState(
+    JSON.parse(localStorage.getItem("highScores")) || {
+      highScore: Infinity.toString(),
+      bestTime: Infinity.toString(),
+    }
+  );
+
+  useEffect(() => {
+    localStorage.setItem("highScores", JSON.stringify(highScores));
+  }, [highScores]);
 
   useEffect(() => {
     let allHeld = true;
@@ -30,8 +44,24 @@ function App() {
       }
     }
     if (allHeld && allSame) {
+      endTime = new Date().getTime();
+      let time = endTime - startTime;
+      // convert time to seconds
+      time = Math.floor(time / 1000);
+      if (time < highScores.bestTime) {
+        setHighScores((oldScores) => {
+          return { ...oldScores, bestTime: time };
+        });
+        console.log("New best time!");
+      }
       setTenzies(true);
       console.log("You won!");
+      if (count < highScores.highScore) {
+        setHighScores((oldScores) => {
+          return { ...oldScores, highScore: count };
+        });
+        console.log("New high score!");
+      }
     } else {
       setTenzies(false);
     }
@@ -60,6 +90,7 @@ function App() {
   });
 
   function roll() {
+    setCount(count + 1);
     setDice((oldDice) => {
       let newDice = oldDice.map((die) => {
         if (!die.isHeld) {
@@ -70,8 +101,10 @@ function App() {
       return newDice;
     });
     if (tenzies) {
-      console.log("new dice");
+      console.log("new dice!");
       setDice(allNewDice());
+      setCount(0);
+      startTime = new Date().getTime();
     }
   }
 
@@ -82,7 +115,17 @@ function App() {
           <h1>Tenzies</h1>
           <p className="instructions">
             Roll until all dice are the same. Click each die to freeze it at its
-            current value between rolls.
+            current value between rolls. <br />
+            Stats:
+            <br /> Roll count: {count}
+            {<br></br>}
+            {highScores.highScore < Infinity ? (
+              <>Best luck: {highScores.highScore} rolls</>
+            ) : null}
+            <br />
+            {highScores.bestTime < Infinity ? (
+              <>Fastest game: {highScores.bestTime} seconds</>
+            ) : null}
           </p>
           <div className="dice">{diceElements}</div>
           <button className="button--roll" onClick={roll}>
