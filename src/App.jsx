@@ -14,10 +14,25 @@ function App() {
   }
 
   const [dice, setDice] = useState(allNewDice());
+  const [tenzies, setTenzies] = useState(false);
 
-  // useEffect(() => {
-  //   allNewDice();
-  // }, []);
+  useEffect(() => {
+    let allHeld = true;
+    let allSame = true;
+    let firstDie = dice[0].value;
+    for (let i = 0; i < dice.length; i++) {
+      if (!dice[i].isHeld) {
+        allHeld = false;
+      }
+      if (dice[i].value !== firstDie) {
+        allSame = false;
+      }
+    }
+    if (allHeld && allSame) {
+      setTenzies(true);
+      console.log("You won!");
+    }
+  }, [dice]);
 
   function holdDice(id) {
     let newDice = dice.map((die) => {
