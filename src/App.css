@@ -23,6 +23,14 @@ main {
   width: 360px;
   height: 380px;
 }
+.instructions {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  margin: 0px 20px;
+  text-align: center;
+  color: #340b0b;
+  font-size: 0.7rem;
+}
 .gameArea {
   display: flex;
   flex-direction: column;

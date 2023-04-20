@@ -41,8 +41,16 @@ function App() {
     );
   });
 
-  function roll(event) {
-    setDice(allNewDice());
+  function roll() {
+    setDice((oldDice) => {
+      let newDice = oldDice.map((die) => {
+        if (!die.isHeld) {
+          die.value = Math.floor(Math.random() * 6) + 1;
+        }
+        return die;
+      });
+      return newDice;
+    });
   }
 
   return (
@@ -50,6 +58,10 @@ function App() {
       <main>
         <section className="gameArea">
           <h1>Tenzies</h1>
+          <p className="instructions">
+            Roll until all dice are the same. Click each die to freeze it at its
+            current value between rolls.
+          </p>
           <div className="dice">{diceElements}</div>
           <button className="button--roll" onClick={roll}>
             Roll
