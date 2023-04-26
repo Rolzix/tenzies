@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import Dice from "./components/Die.jsx";
 import { nanoid } from "nanoid";
 import Confetti from "react-confetti";
+import Stats from "./components/Stats.jsx";
 import "./App.css";
 
 let startTime = new Date().getTime();
 let endTime = Infinity;
+let stats = true;
 
 function App() {
   function allNewDice() {
@@ -116,16 +118,6 @@ function App() {
           <p className="instructions">
             Roll until all dice are the same. Click each die to freeze it at its
             current value between rolls. <br />
-            Stats:
-            <br /> Roll count: {count}
-            {<br></br>}
-            {highScores.highScore < Infinity ? (
-              <>Best luck: {highScores.highScore} rolls</>
-            ) : null}
-            <br />
-            {highScores.bestTime < Infinity ? (
-              <>Fastest game: {highScores.bestTime} seconds</>
-            ) : null}
           </p>
           <div className="dice">{diceElements}</div>
           <button className="button--roll" onClick={roll}>
@@ -133,6 +125,8 @@ function App() {
           </button>
         </section>
       </main>
+      <button>{stats ? "Hide stats" : "Show stats"}</button>
+      {stats && <Stats count={count} highScores={highScores} />}
       {tenzies && <Confetti />}
     </div>
   );
