@@ -7,7 +7,6 @@ import "./App.css";
 
 let startTime = new Date().getTime();
 let endTime = Infinity;
-let stats = true;
 
 function App() {
   function allNewDice() {
@@ -22,6 +21,7 @@ function App() {
   const [dice, setDice] = useState(allNewDice());
   const [tenzies, setTenzies] = useState(false);
   const [count, setCount] = useState(0);
+  const [stats, setStats] = useState(true);
   const [highScores, setHighScores] = useState(
     JSON.parse(localStorage.getItem("highScores")) || {
       highScore: Infinity.toString(),
@@ -103,11 +103,16 @@ function App() {
       return newDice;
     });
     if (tenzies) {
+      // New game starts here
       console.log("new dice!");
       setDice(allNewDice());
       setCount(0);
       startTime = new Date().getTime();
     }
+  }
+
+  function toggleStats() {
+    setStats(!stats);
   }
 
   return (
@@ -124,10 +129,15 @@ function App() {
             {tenzies ? "New Game" : "Roll"}
           </button>
         </section>
+
+        {tenzies && <Confetti />}
       </main>
-      <button>{stats ? "Hide stats" : "Show stats"}</button>
-      {stats && <Stats count={count} highScores={highScores} />}
-      {tenzies && <Confetti />}
+      <div className="statsContainer">
+        <button className="button--stats" onClick={toggleStats}>
+          {stats ? "Hide stats" : "Show stats"}
+        </button>
+        {stats && <Stats count={count} highScores={highScores} />}
+      </div>
     </div>
   );
 }
