@@ -115,6 +115,10 @@ function App() {
     setStats(!stats);
   }
 
+  function resetStats() {
+    setHighScores({ highScore: Infinity.toString(), bestTime: Infinity });
+  }
+
   return (
     <div className="App">
       <main>
@@ -136,7 +140,13 @@ function App() {
         <button className="button--stats" onClick={toggleStats}>
           {stats ? "Hide stats" : "Show stats"}
         </button>
-        {stats && <Stats count={count} highScores={highScores} />}
+        {stats && (
+          <Stats
+            count={count}
+            highScores={highScores}
+            resetStats={resetStats}
+          />
+        )}
       </div>
     </div>
   );
