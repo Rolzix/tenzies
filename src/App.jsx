@@ -116,7 +116,10 @@ function App() {
   }
 
   function resetStats() {
-    setHighScores({ highScore: Infinity.toString(), bestTime: Infinity });
+    setHighScores({
+      highScore: Infinity.toString(),
+      bestTime: Infinity.toString(),
+    });
   }
 
   return (
