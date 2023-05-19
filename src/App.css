@@ -104,7 +104,6 @@ main {
   background: #5035ff;
   box-shadow: 0px 3.2px 7.68px rgba(0, 0, 0, 0.18);
   border-radius: 3.81277px;
-  width: 100px;
   margin: 30px 0px;
   padding: 10px;
 }
@@ -125,7 +124,7 @@ main {
 .statsContainer {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
-  height: 200px;
+  height: 300px;
 }
