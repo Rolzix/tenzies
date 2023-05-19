@@ -3,6 +3,7 @@ import Dice from "./components/Die.jsx";
 import { nanoid } from "nanoid";
 import Confetti from "react-confetti";
 import Stats from "./components/Stats.jsx";
+import { useTranslation } from "react-i18next";
 import "./App.css";
 
 let startTime = new Date().getTime();
@@ -17,7 +18,7 @@ function App() {
     }
     return dice;
   }
-
+  const { t, i18n } = useTranslation();
   const [dice, setDice] = useState(allNewDice());
   const [tenzies, setTenzies] = useState(false);
   const [count, setCount] = useState(0);
@@ -127,13 +128,14 @@ function App() {
       <main>
         <section className="gameArea">
           <h1>Tenzies</h1>
+
           <p className="instructions">
-            Roll until all dice are the same. Click each die to freeze it at its
-            current value between rolls. <br />
+            {t("instructions")}
+            <br />
           </p>
           <div className="dice">{diceElements}</div>
           <button className="button--roll" onClick={roll}>
-            {tenzies ? "New Game" : "Roll"}
+            {tenzies ? t("newGame") : t("roll")}
           </button>
         </section>
 
@@ -141,10 +143,16 @@ function App() {
       </main>
       <div className="statsContainer">
         <button className="button--stats" onClick={toggleStats}>
-          {stats ? "Hide stats" : "Show stats"}
+          {stats ? t("hideStats") : t("showStats")}
         </button>
         {stats && (
           <Stats
+            rollCount={t("rollCount")}
+            luck={t("luck")}
+            rolls={t("rolls")}
+            fastest={t("fastest")}
+            resetStatsT={t("resetStatsT")}
+            seconds={t("seconds")}
             count={count}
             highScores={highScores}
             resetStats={resetStats}
