@@ -3,7 +3,7 @@ import { initReactI18next } from "react-i18next";
 
 i18n.use(initReactI18next).init({
   debug: true,
-  fallbackLng: "en",
+  fallbackLng: "fi",
   interpolation: {
     escapeValue: false, // not needed for react as it escapes by default
   },
@@ -40,7 +40,7 @@ i18n.use(initReactI18next).init({
         rolls: "pyöräytystä",
         fastest: "Nopein: ",
         seconds: "sekuntia",
-        resetStatsT: "nollaa tilastot",
+        resetStatsT: "Nollaa tilastot",
       },
     },
   },

@@ -25,6 +25,22 @@ main {
   max-width: 720px;
   /* height: 720px; */
 }
+
+.language-buttons {
+  color: #340b0b;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  margin: 20px 0px;
+}
+
+.language-buttons > img {
+  height: 30px;
+  cursor: pointer;
+  border: 1px solid #340b0b;
+}
+
 .instructions {
   font-family: "Inter", sans-serif;
   font-weight: 400;
@@ -48,7 +64,7 @@ main {
 
 .gameArea > h1 {
   color: #340b0b;
-  font-size: 2rem;
+  font-size: 3rem;
   font-weight: 700;
   margin: 0;
   padding: 0;

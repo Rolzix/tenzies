@@ -4,6 +4,8 @@ import { nanoid } from "nanoid";
 import Confetti from "react-confetti";
 import Stats from "./components/Stats.jsx";
 import { useTranslation } from "react-i18next";
+import enFlag from "./assets/English_language.svg";
+import fiFlag from "./assets/Flag_of_Finland.svg";
 import "./App.css";
 
 let startTime = new Date().getTime();
@@ -19,6 +21,10 @@ function App() {
     return dice;
   }
   const { t, i18n } = useTranslation();
+  const languages = [
+    { code: "en", native: "English" },
+    { code: "fi", native: "Finnish" },
+  ];
   const [dice, setDice] = useState(allNewDice());
   const [tenzies, setTenzies] = useState(false);
   const [count, setCount] = useState(0);
@@ -29,6 +35,10 @@ function App() {
       bestTime: Infinity.toString(),
     }
   );
+
+  const handleTrans = (code) => {
+    i18n.changeLanguage(code);
+  };
 
   useEffect(() => {
     localStorage.setItem("highScores", JSON.stringify(highScores));
@@ -128,7 +138,13 @@ function App() {
       <main>
         <section className="gameArea">
           <h1>Tenzies</h1>
-
+          <div className="language-buttons instructions">
+            {" "}
+            Select language:
+            {/* add svg image */}
+            <img src={enFlag} alt="Fi" onClick={() => handleTrans("en")} />
+            <img src={fiFlag} alt="En" onClick={() => handleTrans("fi")} />
+          </div>
           <p className="instructions">
             {t("instructions")}
             <br />
