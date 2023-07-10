@@ -2,7 +2,7 @@
 
 In the Tenzies game you roll the dice until all dice are the same number.
 
-**https://tenzies-psi.vercel.app/**
+**https://tenzies-rolzix.vercel.app/**
 
 ## What you might not find in other Tenzies projects (non-tutorial features):
 
@@ -21,13 +21,14 @@ This is a React project created with Vite. The game is a single page application
 
 ## Lessons Learned:
 
-Firsts:
+Notable Firsts:
 
 - React
 
-  - UseEffect
   - React-i18next
   - React-confetti
+  - Conditional rendering
+  - Local storage with React
 
 - Vite
   - Development server
