@@ -35,6 +35,10 @@ function App() {
       bestTime: Infinity.toString(),
     }
   );
+  const [windowDimensions, setWindowDimensions] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
 
   const handleTrans = (code) => {
     i18n.changeLanguage(code);
@@ -79,6 +83,23 @@ function App() {
       setTenzies(false);
     }
   }, [dice]);
+
+  useEffect(() => {
+    // Update window dimensions when the window is resized
+    const handleResize = () => {
+      setWindowDimensions({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   function holdDice(id) {
     let newDice = dice.map((die) => {
@@ -133,6 +154,27 @@ function App() {
     });
   }
 
+  const ConfettiScreen = () => {
+    return (
+      <div
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          zIndex: 999,
+          pointerEvents: "none",
+        }}
+      >
+        <Confetti
+          width={windowDimensions.width}
+          height={windowDimensions.height}
+        />
+      </div>
+    );
+  };
+
   return (
     <div className="App">
       <main>
@@ -154,8 +196,7 @@ function App() {
             {tenzies ? t("newGame") : t("roll")}
           </button>
         </section>
-
-        {tenzies && <Confetti />}
+        {tenzies && ConfettiScreen()}
       </main>
       <div className="statsContainer">
         <button className="button--stats" onClick={toggleStats}>
