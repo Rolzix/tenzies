@@ -6,12 +6,14 @@ In the Tenzies game you roll the dice until all dice are the same number.
 
 ## What you might not find in other Tenzies projects (non-tutorial features):
 
-- [x] language selector and fully translated to English and Finnish
+- [x] Roll with spacebar
+- [x] Language selector and fully translated to English and Finnish
 
 - [x] Statistics:
   - [x] Number of rolls in current game
   - [x] Your luckiest game (least amount of rolls)
-  - [x] your fastest game (least amount of time to win)
+  - [x] Your fastest game (least amount of time to win)
+  - [x] Reset statistics
 
 ## How It's Made:
 

@@ -13,7 +13,7 @@ i18n.use(initReactI18next).init({
       translation: {
         welcome: "Welcome to React",
         instructions:
-          "Roll until all dice are the same. Click each die to freeze it at its current value between rolls.",
+          "Roll until all dice are the same. You can use spacebar to roll. Click each die to freeze it at its current value between rolls.",
         newGame: "New Game",
         roll: "Roll",
         hideStats: "Hide stats",
@@ -30,7 +30,7 @@ i18n.use(initReactI18next).init({
       translation: {
         welcome: "Tervetuloa!",
         instructions:
-          "Pyöräytä noppia kunnes kaikki nopat ovat samoja. Klikkaa noppaa jäädyttääksesi sen arvon pyöräytyksien välillä.",
+          "Pyöräytä noppia kunnes kaikki nopat ovat samoja. Voit pyöräyttää käyttämällä välilyönti näppäintä. Klikkaa noppaa jäädyttääksesi sen arvon pyöräytyksien välillä.",
         newGame: "Uusi peli",
         roll: "Pyöräytä",
         hideStats: "Piilota tilastot",

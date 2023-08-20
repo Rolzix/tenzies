@@ -124,7 +124,6 @@ function App() {
   });
 
   function roll() {
-    setCount(count + 1);
     setDice((oldDice) => {
       let newDice = oldDice.map((die) => {
         if (!die.isHeld) {
@@ -134,6 +133,7 @@ function App() {
       });
       return newDice;
     });
+    setCount((count) => count + 1);
     if (tenzies) {
       // New game starts here
       console.log("new dice!");
@@ -142,6 +142,25 @@ function App() {
       startTime = new Date().getTime();
     }
   }
+
+  useEffect(() => {
+    function handleKeyDown(event) {
+      if (
+        event.key === " " &&
+        event.target.tagName !== "INPUT" &&
+        event.target.tagName !== "TEXTAREA"
+      ) {
+        event.preventDefault();
+        roll();
+      }
+    }
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
 
   function toggleStats() {
     setStats(!stats);
